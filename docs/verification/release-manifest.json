@@ -1,13 +1,16 @@
 {
+  "version": "1.0.1",
   "filename": "PhysicsLab.exe",
   "desktopFilename": "绳索与粒子实验室.exe",
-  "bytes": 51726922,
-  "sha256": "B82B6BC7CA11A11D5DBDEA3D0EDAFC9CCC25412DA1C06D647890F1714292CB88",
+  "bytes": 51729192,
+  "sha256": "E48CFD1C838B3CEFDF2C8050D75C76C2F92A61123869177FEE061F3F2F5A0047",
   "runtime": "win-x64",
   "selfContained": true,
   "singleFile": true,
   "verificationDate": "2026-11-23",
-  "coreTests": 15,
+  "coreTests": 21,
   "uiChecks": 25,
-  "publishedExeVerificationExitCode": 0
+  "publishedExeVerificationExitCode": 0,
+  "desktopExeVerificationExitCode": 0,
+  "previousVersionSha256": "B82B6BC7CA11A11D5DBDEA3D0EDAFC9CCC25412DA1C06D647890F1714292CB88"
 }

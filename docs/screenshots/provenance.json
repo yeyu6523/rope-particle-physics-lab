@@ -8,5 +8,7 @@
     "rope.png": "Published PhysicsLab.exe, suspended rope with circular obstacles, 1320x840 client area",
     "fireworks.png": "Published PhysicsLab.exe, fireworks particle preset, 1320x840 client area"
   },
-  "note": "Frame timer intentionally stopped for reproducible UI verification; displayed 0 FPS is not a performance measurement. Simulation counts are synchronized before capture."
+  "note": "Frame timer intentionally stopped for reproducible UI verification; displayed 0 FPS is not a performance measurement. Simulation counts are synchronized before capture.",
+  "version": "1.0.1",
+  "exeSha256": "E48CFD1C838B3CEFDF2C8050D75C76C2F92A61123869177FEE061F3F2F5A0047"
 }

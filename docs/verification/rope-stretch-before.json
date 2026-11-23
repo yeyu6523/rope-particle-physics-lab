@@ -1,0 +1,48 @@
+[
+  {
+    "scenario": "Bridge-default",
+    "peakStretch": 0.027936697,
+    "settledStretch": 0.008095264,
+    "totalLength": 1003.3942,
+    "elapsedMs": 211
+  },
+  {
+    "scenario": "Bridge-stress",
+    "peakStretch": 0.4056512,
+    "settledStretch": 0.23173165,
+    "totalLength": 1066.0935,
+    "elapsedMs": 72
+  },
+  {
+    "scenario": "Pendulum-default",
+    "peakStretch": 0.047300935,
+    "settledStretch": 0.024226546,
+    "totalLength": 493.26602,
+    "elapsedMs": 139
+  },
+  {
+    "scenario": "Pendulum-stress",
+    "peakStretch": 1.1895471,
+    "settledStretch": 0.6857449,
+    "totalLength": 576.76605,
+    "elapsedMs": 55
+  },
+  {
+    "scenario": "drag-slow-unreachable",
+    "peakStretch": 0.68546736,
+    "heldStretch": 0.68546736,
+    "totalLength": 1341.8274,
+    "heldX": 600,
+    "heldY": 670,
+    "releasePeak": 0.6923578
+  },
+  {
+    "scenario": "drag-jump-unreachable",
+    "peakStretch": 2.430565,
+    "heldStretch": 0.68554056,
+    "totalLength": 1341.8304,
+    "heldX": 600,
+    "heldY": 670,
+    "releasePeak": 0.68510795
+  }
+]

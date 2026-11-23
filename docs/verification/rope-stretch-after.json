@@ -1,0 +1,48 @@
+[
+  {
+    "scenario": "Bridge-default",
+    "peakStretch": 0.0031661987,
+    "settledStretch": 0.00013709068,
+    "totalLength": 1000.05743,
+    "elapsedMs": 909
+  },
+  {
+    "scenario": "Bridge-stress",
+    "peakStretch": 0.0065099,
+    "settledStretch": 0.0003836155,
+    "totalLength": 1000.1267,
+    "elapsedMs": 954
+  },
+  {
+    "scenario": "Pendulum-default",
+    "peakStretch": 0.008127093,
+    "settledStretch": 0.0003657341,
+    "totalLength": 490.04922,
+    "elapsedMs": 854
+  },
+  {
+    "scenario": "Pendulum-stress",
+    "peakStretch": 0.012988567,
+    "settledStretch": 0.00094127655,
+    "totalLength": 490.11725,
+    "elapsedMs": 993
+  },
+  {
+    "scenario": "drag-slow-unreachable",
+    "peakStretch": 0.0060641766,
+    "heldStretch": 0.0012961626,
+    "totalLength": 1000.5436,
+    "heldX": 600,
+    "heldY": 410.14703,
+    "releasePeak": 0.00045228004
+  },
+  {
+    "scenario": "drag-jump-unreachable",
+    "peakStretch": 0.019392014,
+    "heldStretch": 0.0013245344,
+    "totalLength": 1000.6504,
+    "heldX": 600,
+    "heldY": 410.14703,
+    "releasePeak": 0.0005733967
+  }
+]

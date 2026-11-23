@@ -1,0 +1,112 @@
+{
+  "passed": false,
+  "total": 21,
+  "failures": 6,
+  "results": [
+    {
+      "name": "rope transient stretch stays below one percent at default settings",
+      "passed": false,
+      "error": "Bridge peak extension 2.79%"
+    },
+    {
+      "name": "long rope resists stretch at low iterations and extreme forces",
+      "passed": false,
+      "error": "Bridge wind -800 peak extension 27.90%"
+    },
+    {
+      "name": "dragging is limited by both connected anchor spans",
+      "passed": false,
+      "error": "left reach exceeded"
+    },
+    {
+      "name": "moving a pinned endpoint cannot exceed the connected rope length",
+      "passed": false,
+      "error": "anchor overstretched the rope"
+    },
+    {
+      "name": "cuts remove drag reach limits and leave disconnected pieces untouched",
+      "passed": true,
+      "milliseconds": 1
+    },
+    {
+      "name": "rope motion stays consistent when the external step size changes",
+      "passed": false,
+      "error": "substep velocity depends on frame size"
+    },
+    {
+      "name": "rope anchors stay fixed and constraints settle",
+      "passed": false,
+      "error": "constraint relative error 0.81%"
+    },
+    {
+      "name": "rope respects circular collisions",
+      "passed": true,
+      "milliseconds": 101
+    },
+    {
+      "name": "rope cutting disconnects and reset repairs topology",
+      "passed": true,
+      "milliseconds": 48
+    },
+    {
+      "name": "dragged anchors persist and free nodes are released",
+      "passed": true,
+      "milliseconds": 10
+    },
+    {
+      "name": "all rope presets remain finite at maximum wind",
+      "passed": true,
+      "milliseconds": 108
+    },
+    {
+      "name": "disabling obstacles removes circle projection",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "particle emission follows elapsed time",
+      "passed": true,
+      "milliseconds": 2
+    },
+    {
+      "name": "expired particles are recycled",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "all particle presets remain finite for 30 seconds",
+      "passed": true,
+      "milliseconds": 474
+    },
+    {
+      "name": "firework rockets trigger secondary sparks",
+      "passed": true,
+      "milliseconds": 1
+    },
+    {
+      "name": "moving the firework emitter changes launch origin",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "fountain bounces on the floor",
+      "passed": true,
+      "milliseconds": 3
+    },
+    {
+      "name": "particle pool is bounded under repeated bursts",
+      "passed": true,
+      "milliseconds": 8
+    },
+    {
+      "name": "reset restores deterministic simulation",
+      "passed": true,
+      "milliseconds": 2
+    },
+    {
+      "name": "invalid timesteps are rejected",
+      "passed": true,
+      "milliseconds": 4
+    }
+  ]
+}

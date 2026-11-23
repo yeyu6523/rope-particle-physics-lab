@@ -3,6 +3,12 @@ using System.Numerics;
 using System.Text.Json;
 using PhysicsLab.Core;
 
+if (args.Length == 2 && args[0] == "--rope-probe")
+{
+    RopeStretchProbe.Run(args[1]);
+    return 0;
+}
+
 const float Dt = 1f / 120;
 var results = new List<object>();
 int failures = 0;
@@ -17,6 +23,97 @@ void Test(string name, Action action)
     catch (Exception error) { failures++; results.Add(new { name, passed = false, error = error.Message }); Console.WriteLine("FAIL " + name + ": " + error.Message); }
 }
 bool Finite(Vector2 vector) => float.IsFinite(vector.X) && float.IsFinite(vector.Y);
+float Stretch(RopeSimulation rope) => rope.Links.Where(l => l.Active)
+    .Select(l => MathF.Max(0, Vector2.Distance(rope.Nodes[l.A].Position, rope.Nodes[l.B].Position) / l.Length - 1))
+    .DefaultIfEmpty(0).Max();
+
+Test("rope transient stretch stays below one percent at default settings", () =>
+{
+    foreach (var preset in new[] { RopePreset.Bridge, RopePreset.Pendulum })
+    {
+        var rope = new RopeSimulation(); rope.Reset(preset);
+        float peak = 0;
+        for (int i = 0; i < 1200; i++) { rope.Step(Dt); peak = MathF.Max(peak, Stretch(rope)); }
+        Assert(peak < 0.01f, $"{preset} peak extension {peak:P2}");
+        Assert(Stretch(rope) < 0.001f, $"{preset} settled extension {Stretch(rope):P2}");
+    }
+});
+Test("long rope resists stretch at low iterations and extreme forces", () =>
+{
+    foreach (var preset in new[] { RopePreset.Bridge, RopePreset.Pendulum })
+    foreach (int wind in new[] { -800, 800 })
+    {
+        var rope = new RopeSimulation { SegmentCount = 100, Iterations = 8, Gravity = 1800, Wind = wind };
+        rope.Reset(preset);
+        float peak = 0;
+        for (int i = 0; i < 1200; i++) { rope.Step(Dt); peak = MathF.Max(peak, Stretch(rope)); }
+        Assert(peak < 0.02f, $"{preset} wind {wind} peak extension {peak:P2}");
+        Assert(Stretch(rope) < 0.002f, $"{preset} settled extension {Stretch(rope):P2}");
+    }
+});
+Test("dragging is limited by both connected anchor spans", () =>
+{
+    foreach (bool jump in new[] { false, true })
+    {
+        var rope = new RopeSimulation { Collisions = false };
+        for (int i = 0; i < 600; i++) rope.Step(Dt);
+        Vector2 start = rope.Nodes[32].Position;
+        Assert(rope.BeginDrag(start) && rope.DraggedNode == 32, "midpoint grab");
+        float peak = 0;
+        for (int i = 1; i <= 120; i++)
+        {
+            rope.MoveDrag(Vector2.Lerp(start, new(600, 670), jump ? 1 : i / 120f));
+            rope.Step(Dt); peak = MathF.Max(peak, Stretch(rope));
+            Assert(Vector2.Distance(rope.Nodes[32].Position, rope.Nodes[0].Anchor) <= 500.01f, "left reach exceeded");
+            Assert(Vector2.Distance(rope.Nodes[32].Position, rope.Nodes[^1].Anchor) <= 500.01f, "right reach exceeded");
+        }
+        Assert(peak < 0.025f, $"drag peak extension {peak:P2}");
+        Assert(rope.Links.Sum(l => Vector2.Distance(rope.Nodes[l.A].Position, rope.Nodes[l.B].Position)) < 1002, "rope grew during drag");
+        rope.EndDrag();
+        for (int i = 0; i < 240; i++)
+        {
+            rope.Step(Dt);
+            Assert(Stretch(rope) < 0.01f, "release creates an elastic rebound");
+        }
+    }
+});
+Test("moving a pinned endpoint cannot exceed the connected rope length", () =>
+{
+    var rope = new RopeSimulation { Collisions = false };
+    Assert(rope.BeginDrag(rope.Nodes[0].Position), "anchor grab");
+    rope.MoveDrag(new(28, 682));
+    Vector2 reached = rope.Nodes[0].Position;
+    Assert(Vector2.Distance(reached, rope.Nodes[^1].Anchor) <= 1000.01f, "anchor overstretched the rope");
+    rope.EndDrag();
+    for (int i = 0; i < 240; i++) rope.Step(Dt);
+    Assert(rope.Nodes[0].Position == reached, "limited anchor moved after release");
+    Assert(Stretch(rope) < 0.005f, $"anchor extension {Stretch(rope):P2}");
+});
+Test("cuts remove drag reach limits and leave disconnected pieces untouched", () =>
+{
+    var rope = new RopeSimulation { Collisions = false };
+    rope.Links[31].Active = false; rope.Links[32].Active = false;
+    var before = rope.Nodes.Select(n => (n.Position, n.Previous)).ToArray();
+    Assert(rope.BeginDrag(rope.Nodes[32].Position) && rope.DraggedNode == 32, "isolated node grab");
+    rope.MoveDrag(new(600, 670));
+    Assert(rope.Nodes[32].Position == new Vector2(600, 670), "cut node still bound to old anchors");
+    for (int i = 0; i < rope.Nodes.Count; i++)
+        if (i != 32) Assert((rope.Nodes[i].Position, rope.Nodes[i].Previous) == before[i], "drag moved a disconnected piece");
+});
+Test("rope motion stays consistent when the external step size changes", () =>
+{
+    var fixedStep = new RopeSimulation { Gravity = 100, Collisions = false };
+    var changingStep = new RopeSimulation { Gravity = 100, Collisions = false };
+    foreach (var rope in new[] { fixedStep, changingStep })
+    {
+        rope.Reset(RopePreset.Free);
+        foreach (var link in rope.Links) link.Active = false;
+    }
+    for (int i = 0; i < 120; i++) fixedStep.Step(Dt);
+    for (int i = 0; i < 60; i++) { changingStep.Step(1f / 200); changingStep.Step(1f / 60 - 1f / 200); }
+    Assert(Vector2.Distance(fixedStep.Nodes[32].Position, changingStep.Nodes[32].Position) < 0.5f, "substep velocity depends on frame size");
+    Assert(MathF.Abs(changingStep.Time - 1) < 0.0001f, "elapsed time mismatch");
+});
 
 Test("rope anchors stay fixed and constraints settle", () =>
 {
@@ -24,7 +121,7 @@ Test("rope anchors stay fixed and constraints settle", () =>
     var left = rope.Nodes[0].Position; var right = rope.Nodes[^1].Position;
     for (int i = 0; i < 2400; i++) rope.Step(Dt);
     Assert(rope.Nodes[0].Position == left && rope.Nodes[^1].Position == right, "anchor drift");
-    Assert(rope.MaxRelativeError() < 0.035f, $"constraint relative error {rope.MaxRelativeError():P2}");
+    Assert(rope.MaxRelativeError() < 0.001f, $"constraint relative error {rope.MaxRelativeError():P2}");
     Assert(rope.Nodes.All(n => Finite(n.Position) && n.Position.Y <= RopeSimulation.Floor), "invalid or below floor");
 });
 Test("rope respects circular collisions", () =>

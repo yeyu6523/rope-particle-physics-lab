@@ -1,13 +1,13 @@
 # 本次交付验证
 
-验证日期：2026-11-23（Asia/Shanghai）。本次从空 Git 工程新建程序，无需修改或覆盖用户原有源码。
+验证日期：2026-11-23（Asia/Shanghai）。当前交付为 v1.0.1，修复用户反馈的绳索弹性过大问题；原始独立工程与 v1.0.0 Release 保留。
 
 ## 结果与命令
 
 | 检查 | 实际执行方式 | 结果 |
 | --- | --- | --- |
 | Release 编译 | `dotnet build PhysicsLab.sln -c Release --nologo` | 0 警告、0 错误 |
-| 物理测试 | `dotnet run --project tests/PhysicsLab.Tests -c Release -- --report artifacts/core-tests.json` | 15 / 15 通过 |
+| 物理测试 | `dotnet run --project tests/PhysicsLab.Tests -c Release -- --report artifacts/core-tests.json` | 21 / 21 通过 |
 | 原生界面集成检查 | `powershell -ExecutionPolicy Bypass -File scripts/verify.ps1` | 25 / 25 通过 |
 | 单文件发布 | `powershell -ExecutionPolicy Bypass -File scripts/build.ps1` | Windows x64、自包含单文件 exe |
 | 发布 exe 本体检查 | `PhysicsLab.exe --verify-ui <report-directory>` | 退出码 0，25 项检查通过 |
@@ -17,15 +17,17 @@
 
 另已实际通过 Windows PowerShell 的 `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify.ps1` 复核，退出码 0。PowerShell 脚本使用带 BOM 的 UTF-8 编码，兼容 Windows PowerShell 对中文文件名的读取。
 
-GitHub Actions 也已对源码提交 `b75915f` 完成 Windows 云端构建、物理测试与自包含发布，运行 `45122892876` 的结论为 `success`。此项验证不包含需要交互式桌面的 UI 截图检查。
+v1.0.0 的 GitHub Actions 曾对源码提交 `b75915f` 完成 Windows 云端构建、物理测试与自包含发布，运行 `45122892876` 的结论为 `success`。这项历史结果不代表 v1.0.1 已在云端验证；当前版本以本次实际的本地编译、测试和发布 exe 检查为依据。CI 不包含需要交互式桌面的 UI 截图检查。
 
 ## 测试范围
 
 物理检查覆盖固定锚点、稳定后的连接长度误差、圆形碰撞、剪断拓扑和真实分离、拖拽释放、所有绳索预设极限参数有限性、碰撞开关、粒子发射速率、寿命回收、四种粒子预设连续 30 秒数值模拟、烟花二次发射、发射器移动、地面反弹、容量上限、确定性重置和非法步长拒绝。
 
+v1.0.1 新增 6 项回归测试，覆盖默认参数全程峰值拉伸、100 段 / 8 迭代 / 双方向极限风力、双锚点拖拽范围和释放反弹、移动锚点长度限制、断口解除范围限制与断开片段不受拖动影响、外部步长变化。原有稳定后长度误差门槛从 3.5% 收紧为 0.1%。同一回归套件在原版绳索源码上实测 15/21 通过，在修复版上为 21/21；测量方法、原始数据与本地恢复位置见 `ROPE_STIFFNESS.md`。
+
 界面集成检查在应用主线程操作真实 WinForms 控件事件，并检查模型变化、暂停/单步、剪断/重置、页签、所有预设、拖尾可用状态、紧凑窗口以及工具栏内容是否在容器内。原生 `PrintWindow` 导出应用自身客户区，核对了 1320×840 和 1050×740 两种窗口尺寸；截图不包含其他应用窗口。
 
-15 项物理测试与 25 项界面检查采用不同层级，不将它们合并称为 40 项鼠标端到端测试。桌面自动化通道实际返回 native pipe 不可用，因此没有声称执行了系统鼠标自动化。程序截图中的 FPS 为 0 是验证器主动停止帧计时器所致；截图前会同步真实节点/粒子数量。未进行持续帧率基准测量或跨机器兼容性实测。
+21 项物理测试与 25 项界面检查采用不同层级，不合并称为鼠标端到端测试。桌面自动化通道此前实际返回 native pipe 不可用，因此没有声称执行了系统鼠标自动化。程序截图中的 FPS 为 0 是验证器主动停止帧计时器所致；截图前会同步真实节点/粒子数量。未进行持续帧率基准测量或跨机器兼容性实测。
 
 ## 修复与复核
 

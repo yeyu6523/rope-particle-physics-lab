@@ -151,7 +151,7 @@ internal sealed class MainForm : Form
                 index => { rope.Reset((RopePreset)index); accumulator = 0; canvas.Invalidate(); });
             Slider("重力强度", "ropeGravity", 0, 1800, (int)rope.Gravity, v => $"{v} px/s²", v => rope.Gravity = v);
             Slider("水平风力", "ropeWind", -800, 800, (int)rope.Wind, v => $"{v:+0;-0;0} px/s²", v => rope.Wind = v);
-            Slider("求解迭代", "ropeIterations", 8, 64, rope.Iterations, v => $"{v} 次/步", v => rope.Iterations = v);
+            Slider("求解迭代", "ropeIterations", 8, 64, rope.Iterations, v => $"{v} 次/子步", v => rope.Iterations = v);
             Slider("绳索分段", "ropeSegments", 24, 100, rope.SegmentCount, v => $"{v} 段", v => { rope.SegmentCount = v; rope.Reset(rope.Preset); });
             Note("分段变化会重建绳索；迭代越多，\n距离约束误差越小、CPU 开销越高。");
             Check("启用圆形障碍物碰撞", "collisions", rope.Collisions, value => rope.Collisions = value);

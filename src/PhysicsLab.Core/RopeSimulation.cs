@@ -42,6 +42,7 @@ public sealed class RopeSimulation
     public int DraggedNode { get; private set; } = -1;
     public float Time { get; private set; }
     private Vector2 dragPosition;
+    private float previousSubstep;
 
     public RopeSimulation() => Reset(RopePreset.Bridge);
 
@@ -49,7 +50,7 @@ public sealed class RopeSimulation
     {
         Preset = preset;
         Nodes.Clear(); Links.Clear(); Obstacles.Clear();
-        DraggedNode = -1; Time = 0;
+        DraggedNode = -1; Time = 0; previousSubstep = 0;
         Obstacles.Add(new(new(550, 470), 92));
         Obstacles.Add(new(new(850, 555), 61));
         int count = Math.Clamp(SegmentCount, 12, 128);
@@ -74,23 +75,43 @@ public sealed class RopeSimulation
     {
         if (!float.IsFinite(dt) || dt <= 0 || dt > 0.05f)
             throw new ArgumentOutOfRangeException(nameof(dt));
+        // Small integration steps prevent the apparent springiness of a long
+        // chain whose tension cannot propagate through a single local solve.
+        int iterations = Math.Clamp(Iterations, 4, 80);
+        float resolutionScale = Math.Max(1, (Nodes.Count - 1) / 64f);
+        float iterationScale = Math.Max(1, MathF.Sqrt(36f / iterations));
+        int substeps = Math.Max(1, (int)MathF.Ceiling(dt * 960 * resolutionScale * iterationScale));
+        float h = dt / substeps;
+        float damping = MathF.Pow(0.99f, h * 120);
+        float startTime = Time;
         Time += dt;
-        for (int i = 0; i < Nodes.Count; i++)
+        for (int substep = 0; substep < substeps; substep++)
         {
-            var node = Nodes[i];
-            if (IsFixed(i)) { SetFixed(i); continue; }
-            Vector2 velocity = (node.Position - node.Previous) * 0.997f;
-            node.Previous = node.Position;
-            float gust = Wind * (1 + 0.22f * MathF.Sin(Time * 1.7f + i * 0.13f));
-            node.Position += velocity + new Vector2(gust, Gravity) * dt * dt;
+            float substepTime = startTime + h * (substep + 1);
+            float stepRatio = previousSubstep > 0 ? h / previousSubstep : 1;
+            for (int i = 0; i < Nodes.Count; i++)
+            {
+                var node = Nodes[i];
+                if (IsFixed(i)) { SetFixed(i); continue; }
+                Vector2 velocity = (node.Position - node.Previous) * (damping * stepRatio);
+                node.Previous = node.Position;
+                float gust = Wind * (1 + 0.22f * MathF.Sin(substepTime * 1.7f + i * 0.13f));
+                node.Position += velocity + new Vector2(gust, Gravity) * h * h;
+            }
+            SolveConstraints(iterations);
+            previousSubstep = h;
         }
+    }
 
-        for (int iteration = 0; iteration < Math.Clamp(Iterations, 4, 80); iteration++)
+    private void SolveConstraints(int iterations, int first = 0, int last = -1)
+    {
+        if (last < 0) last = Nodes.Count - 1;
+        for (int iteration = 0; iteration < iterations; iteration++)
         {
             // Alternate traversal order to reduce directional bias.
-            for (int j = 0; j < Links.Count; j++)
+            for (int j = first; j < last; j++)
             {
-                var link = Links[iteration % 2 == 0 ? j : Links.Count - 1 - j];
+                var link = Links[iteration % 2 == 0 ? j : last - 1 - (j - first)];
                 if (!link.Active) continue;
                 var a = Nodes[link.A]; var b = Nodes[link.B];
                 Vector2 delta = b.Position - a.Position;
@@ -102,7 +123,7 @@ public sealed class RopeSimulation
                 a.Position += correction * wa;
                 b.Position -= correction * wb;
             }
-            for (int i = 0; i < Nodes.Count; i++)
+            for (int i = first; i <= last; i++)
             {
                 if (IsFixed(i)) { SetFixed(i); continue; }
                 Constrain(Nodes[i]);
@@ -153,10 +174,65 @@ public sealed class RopeSimulation
     public void MoveDrag(Vector2 position)
     {
         if (DraggedNode < 0) return;
-        dragPosition = new(Math.Clamp(position.X, 28, Width - 28), Math.Clamp(position.Y, 55, Floor - 8));
+        Vector2 target = new(Math.Clamp(position.X, 28, Width - 28), Math.Clamp(position.Y, 55, Floor - 8));
+        dragPosition = ReachableDragPosition(target);
+        // Moving a mouse target is a geometric edit, not a spring impulse.
+        // Preserve each free node's velocity when distributing this displacement.
+        var before = Nodes.Select(node => node.Position).ToArray();
         var node = Nodes[DraggedNode];
         if (node.Pinned) node.Anchor = dragPosition;
         SetFixed(DraggedNode);
+        int first = DraggedNode, last = DraggedNode;
+        while (first > 0 && Links[first - 1].Active) first--;
+        while (last < Nodes.Count - 1 && Links[last].Active) last++;
+        SolveConstraints(Math.Max(128, Math.Clamp(Iterations, 4, 80) * 8), first, last);
+        for (int i = first; i <= last; i++)
+            if (!IsFixed(i)) Nodes[i].Previous += Nodes[i].Position - before[i];
+    }
+
+    private Vector2 ReachableDragPosition(Vector2 target)
+    {
+        var limits = new List<(Vector2 Center, float Radius)>();
+        // Only the first pin in each connected direction limits this node.
+        // A cut must stop the traversal; disconnected pins exert no constraint.
+        foreach (int direction in new[] { -1, 1 })
+        {
+            float length = 0;
+            for (int i = DraggedNode; i + direction >= 0 && i + direction < Nodes.Count; i += direction)
+            {
+                var link = Links[direction < 0 ? i - 1 : i];
+                if (!link.Active) break;
+                length += link.Length;
+                if (!Nodes[i + direction].Pinned) continue;
+                limits.Add((Nodes[i + direction].Anchor, length));
+                break;
+            }
+        }
+        foreach (var limit in limits)
+        {
+            Vector2 delta = target - limit.Center;
+            if (delta.LengthSquared() > limit.Radius * limit.Radius)
+                target = limit.Center + Vector2.Normalize(delta) * limit.Radius;
+        }
+        // Project to the intersection of both reach disks, including cases
+        // where projecting onto the second disk leaves the first disk again.
+        if (limits.Count == 2 && Vector2.DistanceSquared(target, limits[0].Center) > limits[0].Radius * limits[0].Radius + 0.01f)
+        {
+            var a = limits[0]; var b = limits[1];
+            Vector2 delta = b.Center - a.Center;
+            float d = delta.Length();
+            if (d > 0.0001f)
+            {
+                Vector2 axis = delta / d;
+                float along = (a.Radius * a.Radius - b.Radius * b.Radius + d * d) / (2 * d);
+                float height = MathF.Sqrt(MathF.Max(0, a.Radius * a.Radius - along * along));
+                Vector2 center = a.Center + axis * along;
+                Vector2 offset = new Vector2(-axis.Y, axis.X) * height;
+                target = Vector2.DistanceSquared(target, center + offset) < Vector2.DistanceSquared(target, center - offset)
+                    ? center + offset : center - offset;
+            }
+        }
+        return target;
     }
 
     public void EndDrag() => DraggedNode = -1;
