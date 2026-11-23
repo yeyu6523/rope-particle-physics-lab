@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "total": 15,
+  "failures": 0,
+  "results": [
+    {
+      "name": "rope anchors stay fixed and constraints settle",
+      "passed": true,
+      "milliseconds": 322
+    },
+    {
+      "name": "rope respects circular collisions",
+      "passed": true,
+      "milliseconds": 100
+    },
+    {
+      "name": "rope cutting disconnects and reset repairs topology",
+      "passed": true,
+      "milliseconds": 50
+    },
+    {
+      "name": "dragged anchors persist and free nodes are released",
+      "passed": true,
+      "milliseconds": 10
+    },
+    {
+      "name": "all rope presets remain finite at maximum wind",
+      "passed": true,
+      "milliseconds": 112
+    },
+    {
+      "name": "disabling obstacles removes circle projection",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "particle emission follows elapsed time",
+      "passed": true,
+      "milliseconds": 2
+    },
+    {
+      "name": "expired particles are recycled",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "all particle presets remain finite for 30 seconds",
+      "passed": true,
+      "milliseconds": 455
+    },
+    {
+      "name": "firework rockets trigger secondary sparks",
+      "passed": true,
+      "milliseconds": 1
+    },
+    {
+      "name": "moving the firework emitter changes launch origin",
+      "passed": true,
+      "milliseconds": 0
+    },
+    {
+      "name": "fountain bounces on the floor",
+      "passed": true,
+      "milliseconds": 3
+    },
+    {
+      "name": "particle pool is bounded under repeated bursts",
+      "passed": true,
+      "milliseconds": 8
+    },
+    {
+      "name": "reset restores deterministic simulation",
+      "passed": true,
+      "milliseconds": 2
+    },
+    {
+      "name": "invalid timesteps are rejected",
+      "passed": true,
+      "milliseconds": 4
+    }
+  ]
+}

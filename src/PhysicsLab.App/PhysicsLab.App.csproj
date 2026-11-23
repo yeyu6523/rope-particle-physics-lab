@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>PhysicsLab</AssemblyName>
+    <RootNamespace>PhysicsLab.App</RootNamespace>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <Version>1.0.0</Version>
+    <Product>绳索与粒子实验室</Product>
+    <Description>Interactive rope and particle simulation</Description>
+    <DebugType>embedded</DebugType>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhysicsLab.Core\PhysicsLab.Core.csproj" />
+  </ItemGroup>
+</Project>

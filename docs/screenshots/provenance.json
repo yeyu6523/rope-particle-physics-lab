@@ -1,0 +1,12 @@
+{
+  "type": "native-application-capture",
+  "date": "2026-11-23",
+  "source": "PhysicsLab.App MainForm.RunUiVerification / WindowCapture.Client",
+  "method": "Windows PrintWindow of this application's client area; no other applications included",
+  "generatedByAIImageModel": false,
+  "files": {
+    "rope.png": "Published PhysicsLab.exe, suspended rope with circular obstacles, 1320x840 client area",
+    "fireworks.png": "Published PhysicsLab.exe, fireworks particle preset, 1320x840 client area"
+  },
+  "note": "Frame timer intentionally stopped for reproducible UI verification; displayed 0 FPS is not a performance measurement. Simulation counts are synchronized before capture."
+}

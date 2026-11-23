@@ -1,0 +1,111 @@
+{
+  "success": true,
+  "checks": [
+    {
+      "name": "rope gravity slider updates the physics model",
+      "success": true
+    },
+    {
+      "name": "pause enables single-step",
+      "success": true
+    },
+    {
+      "name": "single-step advances the paused simulation",
+      "success": true
+    },
+    {
+      "name": "rope cutting changes topology",
+      "success": true
+    },
+    {
+      "name": "reset restores cut links",
+      "success": true
+    },
+    {
+      "name": "rope anchor can be grabbed",
+      "success": true
+    },
+    {
+      "name": "dragging moves the fixed anchor",
+      "success": true
+    },
+    {
+      "name": "rope preset Bridge",
+      "success": true
+    },
+    {
+      "name": "rope preset Pendulum",
+      "success": true
+    },
+    {
+      "name": "rope preset Free",
+      "success": true
+    },
+    {
+      "name": "particle tab switches the canvas and controls",
+      "success": true
+    },
+    {
+      "name": "emission slider updates the particle model",
+      "success": true
+    },
+    {
+      "name": "live particle preset Fountain",
+      "success": true
+    },
+    {
+      "name": "trail control availability Fountain",
+      "success": true
+    },
+    {
+      "name": "live particle preset Fireworks",
+      "success": true
+    },
+    {
+      "name": "trail control availability Fireworks",
+      "success": true
+    },
+    {
+      "name": "live particle preset Snow",
+      "success": true
+    },
+    {
+      "name": "trail control availability Snow",
+      "success": true
+    },
+    {
+      "name": "live particle preset Vortex",
+      "success": true
+    },
+    {
+      "name": "trail control availability Vortex",
+      "success": true
+    },
+    {
+      "name": "burst button creates live particles",
+      "success": true
+    },
+    {
+      "name": "trail checkbox changes rendering setting",
+      "success": true
+    },
+    {
+      "name": "compact window retains canvas and scrollable controls",
+      "success": true
+    },
+    {
+      "name": "performance readout fits inside the toolbar",
+      "success": true
+    },
+    {
+      "name": "playback button fits inside its toolbar container",
+      "success": true
+    }
+  ],
+  "metrics": {
+    "Text": "0 FPS  |  65 nodes  |  64 links  |  dt 1/120 s",
+    "Width": 546,
+    "Height": 34,
+    "Visible": true
+  }
+}

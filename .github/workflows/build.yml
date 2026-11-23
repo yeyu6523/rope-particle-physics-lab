@@ -1,0 +1,26 @@
+name: Build and verify
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build with warnings as errors
+        run: dotnet build PhysicsLab.sln -c Release
+      - name: Test simulation
+        run: dotnet run --project tests/PhysicsLab.Tests -c Release --no-build -- --report artifacts/core-tests.json
+      - name: Publish standalone Windows exe
+        shell: pwsh
+        run: ./scripts/build.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PhysicsLab-win-x64
+          path: |
+            artifacts/publish/PhysicsLab.exe
+            artifacts/core-tests.json
