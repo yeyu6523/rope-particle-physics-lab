@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-23T06:16:46.734Z",
+  "title": "Design System: 绳索与粒子实验室",
+  "extensions": {
+    "colorMeta": {
+      "header": {
+        "role": "primary",
+        "displayName": "深蓝操作色",
+        "tonalRamp": [
+          "oklch(15% 0.0148 253.03)",
+          "oklch(27% 0.0305 253.03)",
+          "oklch(39% 0.0419 253.03)",
+          "oklch(51% 0.0474 253.03)",
+          "oklch(63% 0.0463 253.03)",
+          "oklch(75% 0.0387 253.03)",
+          "oklch(87% 0.0256 253.03)",
+          "oklch(95% 0.0148 253.03)"
+        ]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "蓝墨画布",
+        "tonalRamp": [
+          "oklch(15% 0.0119 255.65)",
+          "oklch(27% 0.0246 255.65)",
+          "oklch(39% 0.0338 255.65)",
+          "oklch(51% 0.0383 255.65)",
+          "oklch(63% 0.0374 255.65)",
+          "oklch(75% 0.0312 255.65)",
+          "oklch(87% 0.0207 255.65)",
+          "oklch(95% 0.0119 255.65)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "蓝白参数面",
+        "tonalRamp": [
+          "oklch(15% 0.0021 247.90)",
+          "oklch(27% 0.0044 247.90)",
+          "oklch(39% 0.0060 247.90)",
+          "oklch(51% 0.0068 247.90)",
+          "oklch(63% 0.0066 247.90)",
+          "oklch(75% 0.0055 247.90)",
+          "oklch(87% 0.0037 247.90)",
+          "oklch(95% 0.0021 247.90)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "深色正文",
+        "tonalRamp": [
+          "oklch(15% 0.0148 251.80)",
+          "oklch(27% 0.0305 251.80)",
+          "oklch(39% 0.0419 251.80)",
+          "oklch(51% 0.0474 251.80)",
+          "oklch(63% 0.0463 251.80)",
+          "oklch(75% 0.0387 251.80)",
+          "oklch(87% 0.0256 251.80)",
+          "oklch(95% 0.0148 251.80)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "次级蓝灰",
+        "tonalRamp": [
+          "oklch(15% 0.0128 246.17)",
+          "oklch(27% 0.0264 246.17)",
+          "oklch(39% 0.0364 246.17)",
+          "oklch(51% 0.0412 246.17)",
+          "oklch(63% 0.0402 246.17)",
+          "oklch(75% 0.0336 246.17)",
+          "oklch(87% 0.0222 246.17)",
+          "oklch(95% 0.0128 246.17)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "柔白画布文字",
+        "tonalRamp": [
+          "oklch(15% 0.0032 247.93)",
+          "oklch(27% 0.0065 247.93)",
+          "oklch(39% 0.0090 247.93)",
+          "oklch(51% 0.0102 247.93)",
+          "oklch(63% 0.0100 247.93)",
+          "oklch(75% 0.0083 247.93)",
+          "oklch(87% 0.0055 247.93)",
+          "oklch(95% 0.0032 247.93)"
+        ]
+      },
+      "copper": {
+        "role": "primary",
+        "displayName": "铜色绳索",
+        "tonalRamp": [
+          "oklch(15% 0.0366 65.22)",
+          "oklch(27% 0.0755 65.22)",
+          "oklch(39% 0.1038 65.22)",
+          "oklch(51% 0.1176 65.22)",
+          "oklch(63% 0.1148 65.22)",
+          "oklch(75% 0.0959 65.22)",
+          "oklch(87% 0.0635 65.22)",
+          "oklch(95% 0.0366 65.22)"
+        ]
+      },
+      "teal": {
+        "role": "secondary",
+        "displayName": "清青标记",
+        "tonalRamp": [
+          "oklch(15% 0.0334 187.13)",
+          "oklch(27% 0.0689 187.13)",
+          "oklch(39% 0.0947 187.13)",
+          "oklch(51% 0.1072 187.13)",
+          "oklch(63% 0.1046 187.13)",
+          "oklch(75% 0.0874 187.13)",
+          "oklch(87% 0.0579 187.13)",
+          "oklch(95% 0.0334 187.13)"
+        ]
+      },
+      "caption": {
+        "role": "neutral",
+        "displayName": "浅蓝说明",
+        "tonalRamp": [
+          "oklch(15% 0.0114 246.99)",
+          "oklch(27% 0.0235 246.99)",
+          "oklch(39% 0.0323 246.99)",
+          "oklch(51% 0.0365 246.99)",
+          "oklch(63% 0.0357 246.99)",
+          "oklch(75% 0.0298 246.99)",
+          "oklch(87% 0.0197 246.99)",
+          "oklch(95% 0.0114 246.99)"
+        ]
+      },
+      "control-white": {
+        "role": "neutral",
+        "displayName": "纯白控件面",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(27% 0.0000 89.88)",
+          "oklch(39% 0.0000 89.88)",
+          "oklch(51% 0.0000 89.88)",
+          "oklch(63% 0.0000 89.88)",
+          "oklch(75% 0.0000 89.88)",
+          "oklch(87% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      },
+      "control-border": {
+        "role": "neutral",
+        "displayName": "控件边框",
+        "tonalRamp": [
+          "oklch(15% 0.0064 243.46)",
+          "oklch(27% 0.0133 243.46)",
+          "oklch(39% 0.0183 243.46)",
+          "oklch(51% 0.0207 243.46)",
+          "oklch(63% 0.0202 243.46)",
+          "oklch(75% 0.0169 243.46)",
+          "oklch(87% 0.0112 243.46)",
+          "oklch(95% 0.0064 243.46)"
+        ]
+      },
+      "primary-hover": {
+        "role": "neutral",
+        "displayName": "深色按钮悬停",
+        "tonalRamp": [
+          "oklch(15% 0.0172 247.58)",
+          "oklch(27% 0.0355 247.58)",
+          "oklch(39% 0.0487 247.58)",
+          "oklch(51% 0.0552 247.58)",
+          "oklch(63% 0.0539 247.58)",
+          "oklch(75% 0.0450 247.58)",
+          "oklch(87% 0.0298 247.58)",
+          "oklch(95% 0.0172 247.58)"
+        ]
+      },
+      "primary-pressed": {
+        "role": "neutral",
+        "displayName": "深色按钮按下",
+        "tonalRamp": [
+          "oklch(15% 0.0173 244.70)",
+          "oklch(27% 0.0357 244.70)",
+          "oklch(39% 0.0490 244.70)",
+          "oklch(51% 0.0555 244.70)",
+          "oklch(63% 0.0542 244.70)",
+          "oklch(75% 0.0453 244.70)",
+          "oklch(87% 0.0300 244.70)",
+          "oklch(95% 0.0173 244.70)"
+        ]
+      },
+      "secondary-hover": {
+        "role": "neutral",
+        "displayName": "浅色按钮悬停",
+        "tonalRamp": [
+          "oklch(15% 0.0050 245.09)",
+          "oklch(27% 0.0104 245.09)",
+          "oklch(39% 0.0142 245.09)",
+          "oklch(51% 0.0161 245.09)",
+          "oklch(63% 0.0157 245.09)",
+          "oklch(75% 0.0131 245.09)",
+          "oklch(87% 0.0087 245.09)",
+          "oklch(95% 0.0050 245.09)"
+        ]
+      },
+      "secondary-pressed": {
+        "role": "neutral",
+        "displayName": "浅色按钮按下",
+        "tonalRamp": [
+          "oklch(15% 0.0077 242.37)",
+          "oklch(27% 0.0158 242.37)",
+          "oklch(39% 0.0218 242.37)",
+          "oklch(51% 0.0246 242.37)",
+          "oklch(63% 0.0240 242.37)",
+          "oklch(75% 0.0201 242.37)",
+          "oklch(87% 0.0133 242.37)",
+          "oklch(95% 0.0077 242.37)"
+        ]
+      },
+      "status-surface": {
+        "role": "neutral",
+        "displayName": "状态栏面",
+        "tonalRamp": [
+          "oklch(15% 0.0043 247.98)",
+          "oklch(27% 0.0088 247.98)",
+          "oklch(39% 0.0121 247.98)",
+          "oklch(51% 0.0137 247.98)",
+          "oklch(63% 0.0134 247.98)",
+          "oklch(75% 0.0112 247.98)",
+          "oklch(87% 0.0074 247.98)",
+          "oklch(95% 0.0043 247.98)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "产品标题",
+        "purpose": "深蓝标题条中的中文产品名，字号单位为 pt。"
+      },
+      "headline": {
+        "displayName": "实验标题",
+        "purpose": "模拟画布左上角的实验名称。"
+      },
+      "title": {
+        "displayName": "参数区标题",
+        "purpose": "侧栏“实验设置”等区块标题。"
+      },
+      "body": {
+        "displayName": "中文正文",
+        "purpose": "按钮、标签、说明、状态栏与参数读数。"
+      },
+      "numeric": {
+        "displayName": "性能数值",
+        "purpose": "仅工具栏 FPS、数量与固定步长使用 Consolas。"
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "canvas-repaint",
+        "value": "16ms timer interval",
+        "purpose": "现有 WinForms 重绘请求节奏，不是装饰动画或帧率保证。"
+      },
+      {
+        "name": "simulation-fixed-step",
+        "value": "1/120s",
+        "purpose": "固定物理步长；播放、暂停与单步共享同一模拟逻辑。"
+      }
+    ],
+    "breakpoints": []
+  },
+  "components": [
+    {
+      "name": "Primary Playback Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "原生暂停/继续按钮的浏览器近似样片；尺寸为基准布局，焦点样式模拟系统提示。",
+      "html": "<button class=\"ds-button ds-primary\">暂停&nbsp; Space</button>",
+      "css": ".ds-button{font:9pt \"Microsoft YaHei UI\";height:32px;width:94px;border:1px solid #C3D0DB;border-radius:0;cursor:pointer}.ds-button:focus-visible{outline:1px dotted #1C3046;outline-offset:-4px}.ds-button:disabled{color:GrayText;cursor:default}.ds-primary{width:112px;background:#182B41;color:#FFFFFF;border-color:#182B41}.ds-primary:hover{background:#2F4B65}.ds-primary:active{background:#3F5E78}.ds-primary:focus-visible{outline-color:#F0F6FC}"
+    },
+    {
+      "name": "Secondary Action Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "重置、保存、单步等浅色平面按钮；单步的禁用由应用运行状态决定。",
+      "html": "<button class=\"ds-button ds-secondary\">重置&nbsp; R</button>",
+      "css": ".ds-button{font:9pt \"Microsoft YaHei UI\";height:32px;width:94px;border:1px solid #C3D0DB;border-radius:0;cursor:pointer}.ds-button:focus-visible{outline:1px dotted #1C3046;outline-offset:-4px}.ds-button:disabled{color:GrayText;cursor:default}.ds-secondary{background:#FFFFFF;color:#1C3046}.ds-secondary:hover{background:#E0EAF3}.ds-secondary:active{background:#CEDEEB}"
+    },
+    {
+      "name": "Experiment Navigation",
+      "kind": "nav",
+      "refersTo": "tab-rope-selected",
+      "description": "页签选中态以铜色/青色区分实验；样片展示绳索选中及粒子选中两组静态状态，不实现页面切换。",
+      "html": "<div class=\"ds-tabs\"><div class=\"ds-tabrow\"><button class=\"ds-tab ds-rope\">绳索模拟 [1]</button><button class=\"ds-tab ds-inactive\">粒子系统 [2]</button></div><div class=\"ds-tabrow\"><button class=\"ds-tab ds-inactive\">绳索模拟 [1]</button><button class=\"ds-tab ds-particle\">粒子系统 [2]</button></div></div>",
+      "css": ".ds-tabs{background:#182B41;padding:12px;display:grid;gap:10px}.ds-tabrow{display:flex;gap:10px}.ds-tab{width:132px;height:32px;font:9pt \"Microsoft YaHei UI\";border:1px solid #577590;border-radius:0;cursor:pointer}.ds-tab:focus-visible{outline:1px dotted #F0F6FC;outline-offset:-4px}.ds-rope{background:#F7B26C;color:#1C3046;border-color:#F7B26C}.ds-rope:hover{background:#FFC58B}.ds-rope:active{background:#E09853}.ds-particle{background:#68DED3;color:#1C3046;border-color:#68DED3}.ds-particle:hover{background:#89EBE2}.ds-particle:active{background:#4CC1B8}.ds-inactive{background:#182B41;color:#F0F6FC}.ds-inactive:hover{background:#2F4B65}.ds-inactive:active{background:#3F5E78}"
+    },
+    {
+      "name": "Preset Selector",
+      "kind": "input",
+      "description": "DropDownList 的浏览器近似；原生 Windows 下拉边框、箭头和弹出菜单仍由系统绘制。",
+      "html": "<label class=\"ds-field\">绳索预设<select class=\"ds-select\"><option>悬索桥 · 双端固定</option><option>单端摆 · 单端固定</option><option>自由落绳 · 无固定端</option></select></label>",
+      "css": ".ds-field{display:block;width:246px;background:#F2F6FA;color:#1C3046;font:9pt \"Microsoft YaHei UI\";padding:8px}.ds-select{display:block;width:246px;font:9pt \"Microsoft YaHei UI\";color:#1C3046;background:#FFFFFF;margin-top:6px;margin-bottom:16px;border-radius:0}.ds-select:hover{border-color:#51677B}.ds-select:focus-visible{outline:1px dotted #1C3046;outline-offset:2px}.ds-select:disabled{color:GrayText}"
+    },
+    {
+      "name": "Parameter Slider",
+      "kind": "input",
+      "description": "左标签、右数值及单位、下方原生无刻度 TrackBar；浏览器 range 的系统外观与 Windows 可不同。",
+      "html": "<label class=\"ds-parameter\"><span class=\"ds-parameter-row\"><span>重力强度</span><output>900 px/s²</output></span><input class=\"ds-range\" type=\"range\" min=\"0\" max=\"1800\" value=\"900\" aria-label=\"重力强度\"></label>",
+      "css": ".ds-parameter{display:block;width:246px;padding:8px;background:#F2F6FA;color:#1C3046;font:9pt \"Microsoft YaHei UI\"}.ds-parameter-row{display:flex;justify-content:space-between;height:22px}.ds-parameter-row output{color:#51677B;text-align:right}.ds-range{display:block;width:246px;height:29px;margin:0 0 8px;cursor:pointer}.ds-range:hover{filter:brightness(.97)}.ds-range:focus-visible{outline:1px dotted #1C3046;outline-offset:1px}.ds-range:disabled{cursor:default}"
+    },
+    {
+      "name": "Native Option Checkbox",
+      "kind": "input",
+      "description": "功能开关；飘雪不支持拖尾时同时禁用控件并解释原因。浏览器样片保持原生语义。",
+      "html": "<div class=\"ds-options\"><label class=\"ds-check\"><input type=\"checkbox\" checked>显示参考网格</label><label class=\"ds-check ds-disabled\"><input type=\"checkbox\" disabled>显示运动拖尾（飘雪不适用）</label></div>",
+      "css": ".ds-options{width:246px;background:#F2F6FA;padding:8px;font:9pt \"Microsoft YaHei UI\";color:#1C3046}.ds-check{display:flex;align-items:center;gap:4px;min-height:28px;margin:1px 0 2px}.ds-check input{margin:0;cursor:pointer}.ds-check input:hover{filter:brightness(.97)}.ds-check input:focus-visible{outline:1px dotted #1C3046;outline-offset:2px}.ds-disabled{color:GrayText}.ds-disabled input{cursor:default}"
+    },
+    {
+      "name": "Parameter Sidebar",
+      "kind": "custom",
+      "refersTo": "sidebar",
+      "description": "连续浅色参数面，无独立卡片。样片只示意标题和说明层级，真实表单按内容启用原生滚动。",
+      "html": "<aside class=\"ds-sidebar\"><h3 class=\"ds-side-title\">实验设置</h3><p class=\"ds-side-label\">绳索预设</p><p class=\"ds-side-note\">分段变化会重建绳索；迭代越多，<br>距离约束误差越小、CPU 开销越高。</p></aside>",
+      "css": ".ds-sidebar{width:260px;padding:16px 12px 20px 20px;background:#F2F6FA;color:#1C3046;font:9pt \"Microsoft YaHei UI\";overflow:auto}.ds-side-title{font:700 12pt \"Microsoft YaHei UI\";height:32px;margin:0 0 8px}.ds-side-label{height:22px;margin:0}.ds-side-note{color:#51677B;line-height:21px;margin:10px 0 8px}"
+    },
+    {
+      "name": "Simulation Canvas",
+      "kind": "custom",
+      "refersTo": "simulation-canvas",
+      "description": "深蓝画布、低对比网格、铜色绳索与青色方形锚点的静态示意。SVG 不是物理仿真替代实现。",
+      "html": "<section class=\"ds-canvas\" tabindex=\"0\" aria-label=\"物理模拟画布\"><h3 class=\"ds-canvas-title\">悬索桥 · 距离约束与碰撞</h3><p class=\"ds-canvas-hint\">左键拖拽节点或障碍物 / 右键剪断绳索</p><svg class=\"ds-world\" viewBox=\"0 0 480 230\" role=\"img\" aria-label=\"铜色绳索与青色固定锚点\"><path d=\"M40 20V220 M100 20V220 M160 20V220 M220 20V220 M280 20V220 M340 20V220 M400 20V220 M460 20V220 M20 40H470 M20 100H470 M20 160H470 M20 220H470\" stroke=\"#192F44\" fill=\"none\"/><circle cx=\"240\" cy=\"175\" r=\"40\" fill=\"#21394F\" stroke=\"#5C7F9B\"/><path d=\"M50 55 Q240 245 430 55\" fill=\"none\" stroke=\"#F7B26C\" stroke-width=\"4.2\" stroke-linecap=\"round\"/><path d=\"M44 49H56V61H44Z M424 49H436V61H424Z\" fill=\"#68DED3\"/></svg><p class=\"ds-canvas-hint\">实心方块：固定锚点　圆点：可运动节点</p></section>",
+      "css": ".ds-canvas{width:480px;background:#0C192A;color:#F0F6FC;padding:20px 25px;font:9pt \"Microsoft YaHei UI\";cursor:crosshair}.ds-canvas-title{font:700 15pt \"Microsoft YaHei UI\";margin:0 0 12px}.ds-canvas-hint{color:#A4B9CD;margin:0 0 10px}.ds-world{display:block;width:480px;height:230px}.ds-canvas:focus-visible{outline:1px dotted #A4B9CD;outline-offset:-4px}"
+    },
+    {
+      "name": "Paused Canvas Status",
+      "kind": "custom",
+      "description": "画布右上角的矩形暂停提示，不是交互按钮。",
+      "html": "<div class=\"ds-pause-context\"><span class=\"ds-paused\">已暂停 · Space 继续</span></div>",
+      "css": ".ds-pause-context{background:#0C192A;padding:24px;text-align:right}.ds-paused{display:inline-block;background:#284056;color:#F0F6FC;padding:6px 10px;font:9pt \"Microsoft YaHei UI\"}"
+    }
+  ],
+  "narrative": {
+    "northStar": "可直接操作的物理实验台",
+    "overview": "这是一套从现有 Windows 成品提取的视觉系统，而非新设定的品牌偏好。深蓝绘图区承载运动、碰撞与约束，浅色原生参数区承载精确控制；中文标签、清楚的状态与持续反馈服务于现场演示。\n\n界面保持紧凑、平整、可辨读。铜色与青色区分实验身份，参数与按钮不抢占模拟的视觉中心。这里的“实验台”是对已实现界面的描述性命名，未代表用户另行确认的品牌主张。",
+    "keyCharacteristics": [
+      "深蓝模拟画布与浅色原生控制区形成明确分工。",
+      "铜色标记绳索，青色标记粒子页面与关键物理标记。",
+      "中文采用 Microsoft YaHei UI；Consolas 仅用于工具栏性能数值。",
+      "矩形控件、细边框与色阶建立层次，不依赖装饰阴影。",
+      "桌面缩放时保留可操作侧栏，由画布吸收窗口尺寸变化。"
+    ],
+    "rules": [
+      {
+        "name": "The Simulation First Rule",
+        "body": "让运动对象成为最醒目的内容；新增控制沿用浅色侧栏或工具栏，不在模拟区叠加装饰卡片。",
+        "section": "colors"
+      },
+      {
+        "name": "The Numeric Type Rule",
+        "body": "中文标题、说明与参数标签沿用比例中文字体；固定字宽只用于当前已经采用该字体的性能读数，不把整套界面改成等宽字。",
+        "section": "typography"
+      },
+      {
+        "name": "The Native State Rule",
+        "body": "保留 Windows 控件的键盘焦点、禁用态与系统绘制；新控件沿用现有原生行为，不用静态图形代替可操作控件。",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do 以 Theme.cs、MainForm.cs 与 SimulationCanvas.cs 的现有实现为 token 来源；本文件记录视觉约定，不代替运行代码。",
+      "Do 为新实验继续使用深色画布、浅色参数区以及明确的页面身份色。",
+      "Do 保留数值单位、暂停提示、可见焦点和与预设能力一致的禁用状态。",
+      "Do 使用原生布局与 DPI 缩放；在桌面紧凑尺寸验证工具栏、指标和侧栏滚动。",
+      "Do 在画布内使用真实模拟几何与数据颜色，保持图例与交互说明可读。"
+    ],
+    "donts": [
+      "Don't 给现有平面控件增加统一圆角卡片、悬浮阴影或网页式大面积留白。",
+      "Don't 把铜色或青色当作所有操作的通用主按钮填色；主播放按钮仍使用深蓝。",
+      "Don't 将粒子按 HSV 生成的分组颜色扩展为界面导航或表单主题色。",
+      "Don't 把原生 TrackBar、ComboBox、CheckBox 的系统主题颜色误记为固定的品牌 token。",
+      "Don't 将 WinForms 字号的 pt、桌面布局像素或模拟世界单位互相混用，也不要套用移动端断点。"
+    ]
+  }
+}

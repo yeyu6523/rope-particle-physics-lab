@@ -15,6 +15,10 @@
 
 运行环境：Windows x64，.NET SDK 10.0.201；发布目录仅需一个 `PhysicsLab.exe`。发布 exe 大小和 SHA256 见 `verification/release-manifest.json`。对应源码/构建输入 SHA256 见 `verification/source-sha256.json`。物理和界面检查的实际输出见 `verification/core-tests.json` 与 `verification/ui-verification.json`。
 
+另已实际通过 Windows PowerShell 的 `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify.ps1` 复核，退出码 0。PowerShell 脚本使用带 BOM 的 UTF-8 编码，兼容 Windows PowerShell 对中文文件名的读取。
+
+GitHub Actions 也已对源码提交 `b75915f` 完成 Windows 云端构建、物理测试与自包含发布，运行 `45122892876` 的结论为 `success`。此项验证不包含需要交互式桌面的 UI 截图检查。
+
 ## 测试范围
 
 物理检查覆盖固定锚点、稳定后的连接长度误差、圆形碰撞、剪断拓扑和真实分离、拖拽释放、所有绳索预设极限参数有限性、碰撞开关、粒子发射速率、寿命回收、四种粒子预设连续 30 秒数值模拟、烟花二次发射、发射器移动、地面反弹、容量上限、确定性重置和非法步长拒绝。
